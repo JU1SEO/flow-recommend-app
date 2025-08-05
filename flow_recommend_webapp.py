@@ -56,6 +56,8 @@ def extract_representative(substance_str):
         representative = "염화비닐"
     elif "코발트" in representative:
         representative = "코발트"
+    elif "산화아연(분진)" in representative:
+        representative = "텅스텐"
 
     return representative
 
