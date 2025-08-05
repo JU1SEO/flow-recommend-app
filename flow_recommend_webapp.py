@@ -158,7 +158,7 @@ with col1:
 4. 헥산, 초산에틸, 아세톤, 테트라하이드로퓨란
 """
     )
-
+    
 col1, col2 = st.columns([4,1])
 
 with col1:
