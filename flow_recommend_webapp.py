@@ -106,6 +106,6 @@ if st.button("유량 추천 실행") and user_input:
         rows.append((line, rep, before, after))
 
     result_df = pd.DataFrame(rows, columns=["입력 유해인자", "대표 유해인자", "측정 전 유량", "측정 후 유량"])
-    st.dataframe(result_df, use_container_width=True)
+    st.dataframe(result_df, use_container_width=True, height=500)
 
     st.download_button("결과 다운로드 (CSV)", result_df.to_csv(index=False).encode("utf-8-sig"), file_name="유량추천결과.csv")
