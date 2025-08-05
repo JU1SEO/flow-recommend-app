@@ -95,6 +95,26 @@ def recommend_flow(rep):
 # ---------------------------
 st.title("유량 추천 엔진")
 
+st.markdown(
+    """
+    <style>
+    .custom-footer-left {
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+        font-size: 11px;
+        color: white;
+        opacity: 0.6;
+        user-select: none;
+        z-index: 9999;
+        font-family: Arial, sans-serif;
+    }
+    </style>
+    <div class="custom-footer-left">developed by. 서주원</div>
+    """,
+    unsafe_allow_html=True,
+)
+
 user_input = st.text_area("유해인자명을 입력하세요 (쉼표로 구분)", height=150)
 
 if st.button("유량 추천 실행") and user_input:
