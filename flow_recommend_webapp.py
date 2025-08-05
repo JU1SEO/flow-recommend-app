@@ -13,13 +13,13 @@ st.markdown(
     textarea {
         border: 1.5px solid #aaa;
         border-radius: 5px;
-        line-height: 24px;
         font-size: 16px;
-        padding: 4px 8px;
+        line-height: 20px;
+        padding: 2px 8px;
         background: #f9f9f9;
         background-image:
             linear-gradient(to bottom, #ccc 1px, transparent 1px);
-        background-size: 100% 24px;
+        background-size: 100% 22px;
     }
     </style>
     """,
