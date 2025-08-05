@@ -93,7 +93,7 @@ def recommend_flow(rep):
 # ---------------------------
 # Streamlit UI
 # ---------------------------
-st.title("단원산업보건센터 유량추천엔진")
+st.title("유해인자 유량 추천 엔진")
 
 st.markdown(
     """
