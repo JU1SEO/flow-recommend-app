@@ -4,6 +4,7 @@ import json
 import random
 import re
 
+# CSS 스타일: 버튼 호버 초록, 입력창 테두리 흰색, 빨간 테두리 제거
 st.markdown(
     """
     <style>
@@ -33,6 +34,12 @@ st.markdown(
         box-shadow: 0 0 5px white !important;
         background-color: #222 !important;
         color: white !important;
+    }
+
+    /* 빨간 테두리(유효성검사) 제거 */
+    textarea:invalid {
+        box-shadow: none !important;
+        border-color: white !important;
     }
     </style>
     """,
