@@ -7,17 +7,26 @@ import re
 # ---------------------------
 # CSS 스타일 추가 (텍스트 에어리어 줄 구분선 효과)
 # ---------------------------
-textarea {
-    border: 1.5px solid #aaa;
-    border-radius: 5px;
-    font-size: 16px;
-    line-height: 40px;
-    padding: 4px 8px;
-    background: #f9f9f9;
-    background-image:
-        linear-gradient(to bottom, #ccc 1px, transparent 1px);
-    background-size: 100% 44px;
-}
+st.markdown(
+    """
+    <style>
+    textarea {
+        border: 1.5px solid #aaa;
+        border-radius: 5px;
+        font-size: 16px;
+        line-height: 40px;
+        padding: 4px 8px;
+        background: #f9f9f9;
+        /* 배경 대신 각 줄 아래에 밑줄 추가 */
+        background-image: none;
+    }
+    textarea::selection {
+        background: #a2d2ff;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 # ---------------------------
 # 데이터 불러오기
