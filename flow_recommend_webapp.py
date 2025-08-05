@@ -5,7 +5,7 @@ import random
 import re
 
 # ---------------------------
-# 데이터 불러오기 함수
+# 데이터 불러오기
 # ---------------------------
 @st.cache_data
 def load_flow_data():
@@ -16,20 +16,23 @@ data = load_flow_data()
 used_flows = set()
 
 # ---------------------------
-# 대표 유해인자 추출 함수
+# 대표 유해인자 추출 함수 (괄호 포함 원본으로 매핑 우선 체크)
 # ---------------------------
 def extract_representative(substance_str):
     original = substance_str  # 원본 보존
 
+    # 매핑 조건은 원본 기준 검사 (괄호 포함 상태)
     if "산화아연(분진)" in original:
         representative = "텅스텐"
     elif "산화아연(흄)" in original:
         representative = "아연"
     else:
-        substance_str = re.sub(r"\([^)]*\)", "", substance_str)
+        # 괄호 제거 등 기존 정제
+        substance_str = re.sub(r"\([^)]*\)", "", substance_str)  # 괄호 제거
         substance_str = re.sub(r"및|그\s*화합물", "", substance_str)
         substance_str = substance_str.replace(" ", "")
 
+        # 화학식 패턴 보호: 1,1- → 1§1-, N,N- → N§N-
         protected = substance_str
         protected = re.sub(r'(\d),(\d-)', r'\1§\2', protected)
         protected = re.sub(r'N,N-', 'N§N-', protected)
@@ -37,6 +40,7 @@ def extract_representative(substance_str):
         parts = protected.split(",")
         representative = parts[0].replace("§", ",")
 
+        # 기타 매핑 규칙
         if "납" in representative:
             representative = "납"
         elif "산화규소" in representative or "규산" in representative:
@@ -69,11 +73,11 @@ def recommend_flow(rep):
     if rep not in data:
         return "N/A", "N/A"
 
+    # 추천 유량 선택 (중복 방지)
     flows = data[rep]
     candidates = [f for f in flows if f not in used_flows]
     if not candidates:
-        candidates = flows
-
+        candidates = flows  # 모두 사용되었으면 초기화
     base = float(random.choice(candidates))
     used_flows.add(base)
 
@@ -111,18 +115,10 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-if "user_input" not in st.session_state:
-    st.session_state.user_input = ""
-
-col1, col2 = st.columns([4, 1])
-
-with col1:
-    user_input = st.text_area(
-        "유해인자명을 입력하세요",
-        value=st.session_state.user_input,
-        key="user_input",
-        height=250,
-        placeholder="""\
+user_input = st.text_area(
+    "유해인자명을 입력하세요",
+    height=250,
+    placeholder="""\
 각 줄에 한 개씩 유해인자명을 입력하세요.
 복수 유해인자는 쉼표로 구분 가능합니다.
 
@@ -131,27 +127,18 @@ with col1:
 2. 산화철분진과흄, 망간, 이산화티타늄, 3가크롬, 니켈(불용성)
 3. 6가크롬
 4. 헥산, 초산에틸, 아세톤, 테트라하이드로퓨란
-"""
-    )
+""",
+)
 
-with col2:
-    st.write("")  # 위쪽 빈 공간
-    st.write("")  # 위쪽 빈 공간
-    if st.button("유량 추천 실행"):
-        if st.session_state.user_input.strip() != "":
-            rows = []
-            substances = [x.strip() for x in st.session_state.user_input.split("\n") if x.strip()]
-            for line in substances:
-                rep = extract_representative(line)
-                before, after = recommend_flow(rep)
-                rows.append((line, rep, before, after))
+if st.button("유량 추천 실행") and user_input:
+    rows = []
+    substances = [x.strip() for x in user_input.split("\n") if x.strip()]
+    for line in substances:
+        rep = extract_representative(line)
+        before, after = recommend_flow(rep)
+        rows.append((line, rep, before, after))
 
-            result_df = pd.DataFrame(rows, columns=["입력 유해인자", "대표 유해인자", "측정 전 유량", "측정 후 유량"])
-            st.dataframe(result_df, use_container_width=True, height=800)
+    result_df = pd.DataFrame(rows, columns=["입력 유해인자", "대표 유해인자", "측정 전 유량", "측정 후 유량"])
+    st.dataframe(result_df, use_container_width=True, height=800)
 
-            st.download_button("결과 다운로드 (CSV)", result_df.to_csv(index=False).encode("utf-8-sig"), file_name="유량추천결과.csv")
-
-    st.write("")  # 아래쪽 빈 공간
-    if st.button("입력창 초기화"):
-        st.session_state.user_input = ""
-    st.write("")  # 아래쪽 빈 공간
+    st.download_button("결과 다운로드 (CSV)", result_df.to_csv(index=False).encode("utf-8-sig"), file_name="유량추천결과.csv")
