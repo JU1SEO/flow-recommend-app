@@ -14,11 +14,14 @@ st.markdown(
         border: 1.5px solid #aaa;
         border-radius: 5px;
         font-size: 16px;
-        line-height: 40px;
-        padding: 4px 8px;
+        line-height: 40px;         /* 줄 높이 */
+        padding: 4px 8px;          /* 위아래 패딩 */
         background: #f9f9f9;
-        /* 배경 대신 각 줄 아래에 밑줄 추가 */
-        background-image: none;
+        background-image:
+            linear-gradient(to bottom, #000 1px, transparent 1px);
+        background-size: 100% 44px; /* 줄 높이 + 여유 */
+        background-repeat: repeat-y;
+        color: #000;               /* 글자색 검정 */
     }
     textarea::selection {
         background: #a2d2ff;
