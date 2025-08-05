@@ -159,25 +159,23 @@ with col1:
 """
     )
 
+col1, col2 = st.columns([4,1])
+
+with col1:
+    user_input = st.text_area(
+        "유해인자명을 입력하세요",
+        value=st.session_state.user_input,
+        key="user_input",
+        height=250,
+        placeholder="..."
+    )
+
 with col2:
-    # 유량 추천 실행 버튼
+    st.write("")  # 빈 줄(상단 여백)
+    st.write("")  # 빈 줄(상단 여백)
     if st.button("유량 추천 실행"):
-        # 입력값이 비어있지 않으면 실행
-        if st.session_state.user_input.strip() != "":
-            rows = []
-            substances = [x.strip() for x in st.session_state.user_input.split("\n") if x.strip()]
-            for line in substances:
-                rep = extract_representative(line)
-                before, after = recommend_flow(rep)
-                rows.append((line, rep, before, after))
-
-            result_df = pd.DataFrame(rows, columns=["입력 유해인자", "대표 유해인자", "측정 전 유량", "측정 후 유량"])
-            # 결과 테이블 출력 (높이 800px)
-            st.dataframe(result_df, use_container_width=True, height=800)
-
-            # CSV 다운로드 버튼
-            st.download_button("결과 다운로드 (CSV)", result_df.to_csv(index=False).encode("utf-8-sig"), file_name="유량추천결과.csv")
-
-    # 입력창 초기화 버튼
+        # 실행 코드
+    st.write("")  # 빈 줄(하단 여백)
     if st.button("입력창 초기화"):
         st.session_state.user_input = ""
+    st.write("")  # 빈 줄(하단 여백)
