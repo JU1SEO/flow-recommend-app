@@ -14,12 +14,12 @@ st.markdown(
         border: 1.5px solid #aaa;
         border-radius: 5px;
         font-size: 16px;
-        line-height: 20px;
-        padding: 2px 8px;
+        line-height: 40px;  /* 기존 20px에서 2배 증가 */
+        padding: 4px 8px;   /* 기존 2px에서 2배 증가 */
         background: #f9f9f9;
         background-image:
             linear-gradient(to bottom, #ccc 1px, transparent 1px);
-        background-size: 100% 22px;
+        background-size: 100% 44px; /* line-height + 약간 여유 */
     }
     </style>
     """,
