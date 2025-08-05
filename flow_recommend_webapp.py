@@ -34,6 +34,8 @@ def extract_representative(substance_str):
     # 매핑 규칙 적용
     if "납" in representative:
         representative = "납"
+    elif "산화아연(분진)" in representative:
+        representative = "텅스텐"
     elif "산화아연(흄)" in representative:
         representative = "아연"
     elif "산화규소" in representative or "규산" in representative:
@@ -56,8 +58,6 @@ def extract_representative(substance_str):
         representative = "염화비닐"
     elif "코발트" in representative:
         representative = "코발트"
-    elif "산화아연(분진)" in representative:
-        representative = "텅스텐"
 
     return representative
 
