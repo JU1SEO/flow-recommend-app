@@ -93,7 +93,10 @@ def recommend_flow(rep):
 # ---------------------------
 # Streamlit UI
 # ---------------------------
-st.title("         유해인자 유량 추천 엔진")
+st.markdown(
+    "<h1 style='text-align: center;'>유해인자 유량 추천 엔진</h1>",
+    unsafe_allow_html=True,
+)
 
 st.markdown(
     """
