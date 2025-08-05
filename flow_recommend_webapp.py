@@ -13,9 +13,9 @@ st.markdown(
     textarea {
         border: 1.5px solid #aaa;
         border-radius: 5px;
-        line-height: 1.5;
+        line-height: 24px;
         font-size: 16px;
-        padding: 8px;
+        padding: 4px 8px;
         background: #f9f9f9;
         background-image:
             linear-gradient(to bottom, #ccc 1px, transparent 1px);
