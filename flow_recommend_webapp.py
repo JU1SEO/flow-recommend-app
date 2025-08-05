@@ -5,33 +5,6 @@ import random
 import re
 
 # ---------------------------
-# CSS 스타일 추가 (텍스트 에어리어 줄 구분선 효과)
-# ---------------------------
-st.markdown(
-    """
-    <style>
-    textarea {
-        border: 1.5px solid #aaa;
-        border-radius: 5px;
-        font-size: 16px;
-        line-height: 40px;         /* 줄 높이 */
-        padding: 4px 8px;          /* 위아래 패딩 */
-        background: #f9f9f9;
-        background-image:
-            linear-gradient(to bottom, #000 1px, transparent 1px);
-        background-size: 50% 44px; /* 줄 높이 + 여유 */
-        background-repeat: repeat-y;
-        color: #000;               /* 글자색 검정 */
-    }
-    textarea::selection {
-        background: #a2d2ff;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-
-# ---------------------------
 # 데이터 불러오기
 # ---------------------------
 @st.cache_data
