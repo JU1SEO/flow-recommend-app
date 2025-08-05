@@ -7,7 +7,7 @@ import re
 st.markdown(
     """
     <style>
-    /* 버튼 호버 시 배경 초록, 테두리 흰색 */
+    /* 버튼 호버 및 포커스 */
     div.stButton > button:hover {
         background-color: #28a745 !important;
         color: white !important;
@@ -20,11 +20,11 @@ st.markdown(
         border-color: white !important;
     }
 
-    /* 입력창 기본 테두리 흰색, 포커스시도 흰색 유지 */
+    /* 입력창 기본 및 포커스 */
     textarea {
         border: 1.5px solid white !important;
         border-radius: 5px !important;
-        background-color: #222 !important; /* 어두운 배경 예시 */
+        background-color: #222 !important;
         color: white !important;
     }
     textarea:focus {
@@ -32,38 +32,6 @@ st.markdown(
         border-color: white !important;
         box-shadow: 0 0 5px white !important;
         background-color: #222 !important;
-        color: white !important;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-
-st.markdown(
-    """
-    <style>
-    div.stButton > button:hover {
-        background-color: #28a745 !important;  /* 초록색 배경 */
-        color: white !important;               /* 흰 글씨 */
-        border-color: white !important;       /* 흰색 테두리 */
-        box-shadow: 0 0 5px white !important; /* 흰빛 그림자 */
-    }
-    div.stButton > button:focus {
-        outline: none !important;              /* 기본 파란 테두리 제거 */
-        box-shadow: 0 0 5px white !important; /* 흰빛 그림자 */
-        border-color: white !important;       /* 흰색 테두리 */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-
-# 마우스 오버 시 버튼 색 초록으로 변경하는 CSS
-st.markdown(
-    """
-    <style>
-    div.stButton > button:hover {
-        background-color: #28a745 !important;
         color: white !important;
     }
     </style>
