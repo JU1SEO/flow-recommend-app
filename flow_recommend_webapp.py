@@ -117,7 +117,7 @@ st.markdown(
 
 user_input = st.text_area(
     "유해인자명을 입력하세요",
-    height=400,
+    height=250,
     placeholder="""\
 각 줄에 한 개씩 유해인자명을 입력하세요.
 복수 유해인자는 쉼표로 구분 가능합니다.
