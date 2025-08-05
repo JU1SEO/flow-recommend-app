@@ -5,6 +5,28 @@ import random
 import re
 
 # ---------------------------
+# CSS 스타일 추가 (텍스트 에어리어 줄 구분선 효과)
+# ---------------------------
+st.markdown(
+    """
+    <style>
+    textarea {
+        border: 1.5px solid #aaa;
+        border-radius: 5px;
+        line-height: 1.5;
+        font-size: 16px;
+        padding: 8px;
+        background: #f9f9f9;
+        background-image:
+            linear-gradient(to bottom, #ccc 1px, transparent 1px);
+        background-size: 100% 24px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+# ---------------------------
 # 데이터 불러오기
 # ---------------------------
 @st.cache_data
@@ -93,7 +115,7 @@ def recommend_flow(rep):
 # ---------------------------
 # Streamlit UI
 # ---------------------------
-st.title("유량 추천 엔진")
+st.title("단원산업보건센터 유량추천엔진")
 
 st.markdown(
     """
@@ -115,7 +137,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-user_input = st.text_area("유해인자명을 입력하세요 (쉼표로 구분)", height=150)
+user_input = st.text_area("유해인자명을 입력하세요 (각 문단별로 하나의 유량이 추천됩니다)", height=150)
 
 if st.button("유량 추천 실행") and user_input:
     rows = []
