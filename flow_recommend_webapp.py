@@ -4,6 +4,25 @@ import json
 import random
 import re
 
+st.markdown(
+    """
+    <style>
+    textarea:invalid {
+        border-color: white !important;
+        box-shadow: none !important;
+    }
+    textarea:focus:invalid {
+        border-color: white !important;
+        box-shadow: none !important;
+    }
+    textarea {
+        border: 1.5px solid white !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 # CSS 스타일: 버튼 호버 초록, 입력창 테두리 흰색, 빨간 테두리 제거
 st.markdown(
     """
