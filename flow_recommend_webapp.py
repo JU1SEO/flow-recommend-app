@@ -19,7 +19,7 @@ st.markdown(
         background: #f9f9f9;
         background-image:
             linear-gradient(to bottom, #000 1px, transparent 1px);
-        background-size: 100% 44px; /* 줄 높이 + 여유 */
+        background-size: 50% 44px; /* 줄 높이 + 여유 */
         background-repeat: repeat-y;
         color: #000;               /* 글자색 검정 */
     }
