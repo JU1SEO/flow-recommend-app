@@ -115,7 +115,18 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-user_input = st.text_area("유해인자명을 입력하세요 (각 문단별로 하나의 유량이 추천됩니다)", height=150)
+user_input = st.text_area(
+    "유해인자명을 입력하세요 (한 줄에 하나씩)",
+    height=200,
+    placeholder="""\
+각 줄에 한 개씩 유해인자명을 입력하세요.
+복수 유해인자는 쉼표로 구분 가능합니다.
+예시:
+용접흄
+산화철분진과흄, 망간, 3가크롬
+초산에틸
+""",
+)
 
 if st.button("유량 추천 실행") and user_input:
     rows = []
