@@ -4,6 +4,19 @@ import json
 import random
 import re
 
+# 마우스 오버 시 버튼 색 초록으로 변경하는 CSS
+st.markdown(
+    """
+    <style>
+    div.stButton > button:hover {
+        background-color: #28a745 !important;
+        color: white !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 # ---------------------------
 # 데이터 불러오기
 # ---------------------------
